@@ -1,0 +1,4 @@
+2021-02-25 21:11:09 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabela "EMPLOYEE" nie istnieje
+Table "EMPLOYEE" not found; SQL statement:
+select * from employee [42102-200]
