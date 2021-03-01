@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/employees/options")
+@RequestMapping("/api/employees")
 @Component
 public class Start {
 
@@ -23,9 +23,6 @@ public class Start {
         //Employee employee = new Employee("Example1", "Example1", "Female", "Junior Java Developer", 5000.00, 0.00, "example1.mail.com", "999999999");
         //empRepo.save(employee);
 
-        //if(empRepo.findAllById(101)!=null)
-        //empRepo.deleteById(101);
-
         //Iterable<Employee> all = empRepo.findAllByGender("Female");
         //all.forEach(System.out::println);
 
@@ -33,17 +30,23 @@ public class Start {
 
     @PostMapping
     public Employee addEmployee(@RequestBody Employee employee){
-        return empRepo.save(employee);
+        if(empRepo.getById(employee.getId())==null)
+            return empRepo.save(employee);
+        else
+            return null;
     }
 
     @PutMapping
     public Employee uptadeEmployee(@RequestBody Employee employee){
-        return empRepo.save(employee);
+        if(empRepo.getById(employee.getId())==null)
+            return null;
+        else
+            return empRepo.save(employee);
     }
 
     @DeleteMapping
     public void deleteEmployee(@RequestParam Integer index){
-        if(empRepo.findById(index)!=null)
+        if(empRepo.getById(index)!=null)
             empRepo.deleteById(index);
     }
 
